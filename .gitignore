@@ -1,0 +1,9 @@
+# Keep the cleaning/QA engine private — it's the moat. Publish data + methodology only.
+build_dataset.py
+pull_edgar.py
+POST_DRAFT.md
+
+__pycache__/
+*.pyc
+.DS_Store
+.env

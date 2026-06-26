@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-query_asof.py — point-in-time query helper for the Aboveboard sample dataset.
+query_asof.py — point-in-time query helper for the Tradevo Data sample dataset.
 
 Answers the only question that makes a fundamental backtest honest:
 "What did I ACTUALLY KNOW about this company as of date X?"

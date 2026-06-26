@@ -1,4 +1,4 @@
-# Aboveboard — honest point-in-time US equity fundamentals
+# Tradevo Data — honest point-in-time US equity fundamentals
 
 *Fundamentals with nothing hidden — no lookahead, no silent restatements.*
 
@@ -53,4 +53,4 @@ Tell me what you'd need it to cover (ratios? segments? international?) and what 
 (CSV, Parquet, Python API).
 
 ## Data
-Source data is U.S. SEC EDGAR (public domain). **Aboveboard** is a product of Tradevo Technologies Inc.
+Source data is U.S. SEC EDGAR (public domain). **Tradevo Data** is a product of Tradevo Technologies Inc.

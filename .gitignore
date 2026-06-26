@@ -1,7 +1,10 @@
 # Keep the cleaning/QA engine private — it's the moat. Publish data + methodology only.
 build_dataset.py
+build_universe.py
 pull_edgar.py
 POST_DRAFT.md
+data/pit_universe.csv
+data/universe_progress.txt
 
 __pycache__/
 *.pyc

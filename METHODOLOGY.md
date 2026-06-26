@@ -1,4 +1,4 @@
-# Aboveboard — Methodology
+# Tradevo Data — Methodology
 
 *Point-in-time US equity fundamentals, built honestly from SEC EDGAR.*
 

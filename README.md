@@ -24,6 +24,24 @@ out of reach for independent quants and small funds. This is the affordable, hon
 See **[METHODOLOGY.md](METHODOLOGY.md)** for exactly how it's built, validated, and where its
 limits are — because with data, showing your work *is* the product.
 
+## Use it — point-in-time queries
+`query_asof.py` answers the one question that keeps a backtest honest — *what could I actually
+know on date X?*
+
+```bash
+python3 query_asof.py AAPL 2024-06-30
+```
+```
+What you could HONESTLY know about AAPL as of 2024-06-30:
+  Revenue              $383.3B   (FY2023, filed 2023-11-03)
+  NetIncome             $97.0B   (FY2023, filed 2023-11-03)
+  OperatingCashFlow    $110.5B   (FY2023, filed 2023-11-03)
+  ...  (7 concepts)
+```
+Run it again as of `2025-01-15` and every line jumps to FY2024 — because that 10-K wasn't filed
+until Nov 1, 2024. Same company, months apart, a different *known* reality. That gap is the
+lookahead bias this dataset removes.
+
 ## Want the full thing?
 The **full US universe, quarterly (10-Q) point-in-time history, and extra fields** are in the
 works. If clean, affordable, point-in-time fundamentals would be useful to you — or you want a

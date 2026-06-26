@@ -9,15 +9,15 @@ lookahead bias or silently-restated numbers.
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't
 public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample,
-fundamentals became public an average of **41 days after** the period ended. That hidden
+fundamentals became public an average of **43 days after** the period ended. That hidden
 future-peek inflates every fundamental backtest.
 
 The clean point-in-time vendors (Compustat PIT, FactSet) fix this but run **$10k–50k+/yr** —
 out of reach for independent quants and small funds. This is the affordable, honest alternative.
 
 ## The free sample
-- **20 large-cap US companies · 7 concepts** (Revenue, Net Income, Operating Cash Flow, Diluted EPS, Diluted Shares, Assets, Equity) · up to **12 years**
-- **1,588 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
+- **40 large-cap US companies · 7 concepts** (Revenue, Net Income, Operating Cash Flow, Diluted EPS, Diluted Shares, Assets, Equity) · up to **12 years**
+- **3,212 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
 - Every row carries: `period_end`, `first_filed` (the point-in-time stamp), `lag_days`,
   `original_value` vs `latest_value`, a `restated` flag, and a per-row `qa_status`.
 

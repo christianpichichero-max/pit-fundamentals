@@ -19,7 +19,7 @@ the numbers aren't *public* until the 10-K is filed weeks later (Apple's was fil
 information that didn't exist yet — it's peeking into the future.
 
 In this sample, on rows with a reliable filing date, fundamentals became public on
-average **41 days after** the period ended (max 60). That's the future-peek a naive
+average **43 days after** the period ended (max 61). That's the future-peek a naive
 join silently grants you on *every data point*. It makes strategies look better in
 testing than they are in life.
 
@@ -79,17 +79,17 @@ to the most recent reporting and validate every row (see below).
 
 ## This sample's coverage
 
-- 20 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
-- 1,588 point-in-time rows; revenue history depth averages 11.6 years
-- 1,503/1,588 rows carry a reliable filing date; 85 oldest-year/edge rows flagged for resolution
-- 105 restatements detected
+- 40 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
+- 3,212 point-in-time rows; revenue history depth averages 11.7 years
+- 3,057/3,212 rows carry a reliable filing date; 155 oldest-year/edge rows flagged for resolution
+- 180 restatements detected
 
 ## Known limitations (we mark them, we don't hide them)
 
-- **Oldest-year filing dates**: 85 rows where only a later XBRL filing exists; flagged, not faked.
+- **Oldest-year filing dates**: 155 rows where only a later XBRL filing exists; flagged, not faked.
   (Resolvable by cross-referencing the EDGAR submissions index — on the roadmap.)
 - **Annual only** for now; quarterly (10-Q) point-in-time is the next build.
 - **Banks/insurers**: "revenue" is an approximate concept for financials; treat JPM-type names with care.
-- **20-company sample**: the full US universe is a pipeline run away — gated on demand, not on capability.
+- **40-company sample**: the full US universe is a pipeline run away — gated on demand, not on capability.
 
 The entire pitch is the line above each of these: a clean dataset *tells you what it doesn't know.*

@@ -1,4 +1,6 @@
-# Point-in-Time US Equity Fundamentals — Methodology
+# Aboveboard — Methodology
+
+*Point-in-time US equity fundamentals, built honestly from SEC EDGAR.*
 
 A small, honest fundamentals dataset built entirely from free SEC EDGAR filings.
 Every value is stamped with the date it *first became public*, so a backtest can only
@@ -64,7 +66,7 @@ to the most recent reporting and validate every row (see below).
 | column | meaning |
 |---|---|
 | `ticker`, `cik` | company identity |
-| `concept` | Revenue / NetIncome / Assets / StockholdersEquity |
+| `concept` | Revenue / NetIncome / OperatingCashFlow / EPSDiluted / DilutedShares / Assets / StockholdersEquity |
 | `xbrl_tag` | the exact SEC tag the value came from (full provenance) |
 | `fiscal_year`, `period_end` | the period the value covers |
 | `first_filed` | date it first became public (the point-in-time stamp) |
@@ -77,14 +79,14 @@ to the most recent reporting and validate every row (see below).
 
 ## This sample's coverage
 
-- 20 large-cap US companies, 4 core concepts, up to 12 fiscal years each
-- 943 point-in-time rows; revenue history depth averages 11.6 years
-- 891/943 rows carry a reliable filing date; 52 oldest-year rows flagged for resolution
-- 34 restatements detected
+- 20 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
+- 1,588 point-in-time rows; revenue history depth averages 11.6 years
+- 1,503/1,588 rows carry a reliable filing date; 85 oldest-year/edge rows flagged for resolution
+- 105 restatements detected
 
 ## Known limitations (we mark them, we don't hide them)
 
-- **Oldest-year filing dates**: 52 rows where only a later XBRL filing exists; flagged, not faked.
+- **Oldest-year filing dates**: 85 rows where only a later XBRL filing exists; flagged, not faked.
   (Resolvable by cross-referencing the EDGAR submissions index — on the roadmap.)
 - **Annual only** for now; quarterly (10-Q) point-in-time is the next build.
 - **Banks/insurers**: "revenue" is an approximate concept for financials; treat JPM-type names with care.

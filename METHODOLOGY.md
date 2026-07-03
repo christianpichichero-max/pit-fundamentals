@@ -81,12 +81,12 @@ to the most recent reporting and validate every row (see below).
 
 - 40 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
 - 3,212 point-in-time rows; revenue history depth averages 11.7 years
-- 3,057/3,212 rows carry a reliable filing date; 155 oldest-year/edge rows flagged for resolution
-- 180 restatements detected
+- 3,152/3,212 rows carry a reliable filing date (mean lag 43.4 days, max 61); 60 oldest-year/edge rows flagged for resolution
+- 187 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments)
 
 ## Known limitations (we mark them, we don't hide them)
 
-- **Oldest-year filing dates**: 155 rows where only a later XBRL filing exists; flagged, not faked.
+- **Oldest-year filing dates**: 60 rows where only a later XBRL filing exists; flagged, not faked.
   (Resolvable by cross-referencing the EDGAR submissions index — on the roadmap.)
 - **Annual only** for now; quarterly (10-Q) point-in-time is the next build.
 - **Banks/insurers**: "revenue" is an approximate concept for financials; treat JPM-type names with care.

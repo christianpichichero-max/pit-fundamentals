@@ -8,9 +8,10 @@ lookahead bias or silently-restated numbers.
 
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't
-public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample,
-fundamentals became public an average of **43 days after** the period ended. That hidden
-future-peek inflates every fundamental backtest.
+public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample's
+reliable-filing-date rows (3,152 of 3,212), fundamentals became public an average of
+**43 days after** the period ended (max 61). That hidden future-peek inflates every
+fundamental backtest.
 
 The clean point-in-time vendors (Compustat PIT, FactSet) fix this but run **$10k–50k+/yr** —
 out of reach for independent quants and small funds. This is the affordable, honest alternative.
@@ -43,14 +44,16 @@ until Nov 1, 2024. Same company, months apart, a different *known* reality. That
 lookahead bias this dataset removes.
 
 ## Want the full thing?
-The **full US universe, quarterly (10-Q) point-in-time history, and extra fields** are in the
-works. If clean, affordable, point-in-time fundamentals would be useful to you — or you want a
-specific ticker added so you can sanity-check it against your own data — get in touch:
+The full US universe is live: **5,214 companies · 313,562 point-in-time rows**, served as a
+JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
+cancel anytime.
 
-> 📨 **[sign-up / contact link — add before posting]**
+> 🌐 **[tradevodata.com](https://tradevodata.com/?ref=github)** · docs at
+> [tradevodata.com/docs](https://tradevodata.com/docs)
 
-Tell me what you'd need it to cover (ratios? segments? international?) and what format you want
-(CSV, Parquet, Python API).
+Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) and bulk
+Parquet are on the roadmap. If you need quarterly or delisted coverage today, a research-grade
+vendor will fit you better; this is the affordable tier for lookahead-safe annual fundamentals.
 
 ## Data
 Source data is U.S. SEC EDGAR (public domain). **Tradevo Data** is a product of Tradevo Technologies Inc.

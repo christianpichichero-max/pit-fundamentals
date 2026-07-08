@@ -65,8 +65,9 @@ cancel anytime.
 > 🌐 **[tradevodata.com](https://tradevodata.com/?ref=github)** · docs at
 > [tradevodata.com/docs](https://tradevodata.com/docs)
 
-Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) and bulk
-Parquet are on the roadmap. If you need quarterly or delisted coverage today, a research-grade
+Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) is on the
+roadmap. Bulk is included in the $49 plan: `GET /v1/download` (full dataset, one gzipped CSV) and
+`GET /v1/snapshot?as_of=` (whole-universe cross-section); only the Parquet format is roadmap. If you need quarterly or delisted coverage today, a research-grade
 vendor will fit you better; this is the affordable tier for lookahead-safe annual fundamentals.
 
 Waiting on quarterly? [Join the waitlist](https://tradevodata.com/#waitlist) — one email when

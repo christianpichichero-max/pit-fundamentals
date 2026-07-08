@@ -44,7 +44,7 @@ until Nov 1, 2024. Same company, months apart, a different *known* reality. That
 lookahead bias this dataset removes.
 
 ## Want the full thing?
-The full US universe is live: **5,214 companies · 313,562 point-in-time rows**, served as a
+The full US universe is live: **5,212 companies · 313,489 point-in-time rows**, served as a
 JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
 cancel anytime.
 
@@ -54,6 +54,9 @@ cancel anytime.
 Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) and bulk
 Parquet are on the roadmap. If you need quarterly or delisted coverage today, a research-grade
 vendor will fit you better; this is the affordable tier for lookahead-safe annual fundamentals.
+
+Waiting on quarterly? [Join the waitlist](https://tradevodata.com/#waitlist) — one email when
+10-Q data ships, nothing else.
 
 ## Data
 Source data is U.S. SEC EDGAR (public domain). **Tradevo Data** is a product of Tradevo Technologies Inc.

@@ -6,6 +6,20 @@ A free sample dataset of **point-in-time** US equity fundamentals, built from SE
 Every value is stamped with the date it *first became public* — so you can backtest without
 lookahead bias or silently-restated numbers.
 
+## Use it in Python
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/christianpichichero-max/tradevodata-python/blob/main/examples/lookahead_bias_demo.ipynb)
+
+```bash
+pip install git+https://github.com/christianpichichero-max/tradevodata-python
+```
+```python
+from tradevodata import load_sample
+df = load_sample()  # this whole sample as a typed DataFrame — no API key
+df[df.ticker == "AAPL"].head()
+```
+The Colab notebook above demonstrates the lookahead bug live on this data — zero setup, zero key.
+
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't
 public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample's

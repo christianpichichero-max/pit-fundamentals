@@ -84,6 +84,28 @@ to the most recent reporting and validate every row (see below).
 - 3,152/3,212 rows carry a reliable filing date (mean lag 43.4 days, max 61); 60 oldest-year/edge rows flagged for resolution
 - 187 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments)
 
+## What the adversarial audit caught (and fixed)
+
+Before launch we ran an adversarial audit: independent agents re-derived values straight from
+the raw EDGAR filings and diffed them against this dataset. It caught two real bugs:
+
+1. **Fiscal-year labeling off-by-one (~25,000 rows in the full dataset).** Comparative-year
+   figures (prior-year numbers re-reported inside a later 10-K) were tagged with the *filing's*
+   fiscal year instead of the period they actually covered — e.g. Alphabet's FY2014 revenue
+   (period ending 2014-12-31) was labeled FY2015. Fix: `fiscal_year` is now derived from
+   `period_end` (the year the period ends; periods ending Jan 1–7 belong to the prior fiscal
+   year, which preserves 52/53-week calendars like JNJ's).
+2. **Diluted share counts stored in millions for some tickers.** An XBRL scale mis-parse left
+   e.g. McDonald's diluted shares as `716.4` instead of `716,400,000`. Fix: scale normalization,
+   re-verified against the filings.
+
+Both fixes are in the published sample (2026-07-07). Neither `first_filed` nor `period_end`
+was affected — the point-in-time stamps were always correct; the bugs were in labels and units.
+
+We publish this because "our data is audited" only means something if you also publish what the
+audit found. A pipeline this size with zero bugs found would just mean nobody looked. If you
+find something else, open an issue — corrections get published, not buried.
+
 ## Known limitations (we mark them, we don't hide them)
 
 - **Oldest-year filing dates**: 60 rows where only a later XBRL filing exists; flagged, not faked.

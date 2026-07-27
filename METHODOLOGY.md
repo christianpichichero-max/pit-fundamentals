@@ -95,12 +95,18 @@ the raw EDGAR filings and diffed them against this dataset. It caught two real b
    (period ending 2014-12-31) was labeled FY2015. Fix: `fiscal_year` is now derived from
    `period_end` (the year the period ends; periods ending Jan 1–7 belong to the prior fiscal
    year, which preserves 52/53-week calendars like JNJ's).
-2. **Diluted share counts stored in millions for some tickers.** An XBRL scale mis-parse left
-   e.g. McDonald's diluted shares as `716.4` instead of `716,400,000`. Fix: scale normalization,
-   re-verified against the filings.
+2. **Diluted share counts reported on different scales by different filers.** Some companies
+   tag share counts in millions (McDonald's files `716.4`), others in thousands (National
+   Beverage files `93,620`), others in full units. We previously multiplied every sub-100k
+   value by 1e6, which was wrong for the thousands filers by a factor of 1,000 — so we removed
+   that correction rather than keep guessing. **We do not infer scale from magnitude.** These
+   rows keep the filer's own number and carry `qa_status = FLAG:implausible_value`, and the API
+   returns `null` for them rather than a figure we can't stand behind. Correcting them properly
+   (deriving scale from the company's own NetIncome/EPS ratio) is on the roadmap; publishing a
+   guess is not.
 
-Both fixes are in the published sample (2026-07-07). Neither `first_filed` nor `period_end`
-was affected — the point-in-time stamps were always correct; the bugs were in labels and units.
+Item 1 is fixed in the published sample. Item 2 is *flagged, not fixed* — see above. Neither
+`first_filed` nor `period_end` was affected: the point-in-time stamps were always correct.
 
 We publish this because "our data is audited" only means something if you also publish what the
 audit found. A pipeline this size with zero bugs found would just mean nobody looked. If you

@@ -58,7 +58,7 @@ until Nov 1, 2024. Same company, months apart, a different *known* reality. That
 lookahead bias this dataset removes.
 
 ## Want the full thing?
-The full US universe is live: **5,212 companies · 313,489 point-in-time rows**, served as a
+The full US universe is live: **5,194 companies · 313,406 point-in-time rows**, served as a
 JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
 cancel anytime.
 

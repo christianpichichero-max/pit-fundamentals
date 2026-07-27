@@ -10,3 +10,8 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+
+# Never publish the paid product or any variant of it. A .bak slipped past the
+# bare-filename rules once and shipped 176k rows of the paid universe publicly.
+data/pit_universe*
+*.bak

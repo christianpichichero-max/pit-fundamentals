@@ -23,7 +23,7 @@ The Colab notebook above demonstrates the lookahead bug live on this data — ze
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't
 public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample's
-reliable-filing-date rows (3,152 of 3,212), fundamentals became public an average of
+reliable-filing-date rows (3,240 of 3,280), fundamentals became public an average of
 **43 days after** the period ended (max 61). That hidden future-peek inflates every
 fundamental backtest.
 
@@ -32,7 +32,7 @@ out of reach for independent quants and small funds. This is the affordable, hon
 
 ## The free sample
 - **40 large-cap US companies · 7 concepts** (Revenue, Net Income, Operating Cash Flow, Diluted EPS, Diluted Shares, Assets, Equity) · up to **12 years**
-- **3,212 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
+- **3,280 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
 - Every row carries: `period_end`, `first_filed` (the point-in-time stamp), `lag_days`,
   `original_value` vs `latest_value`, a `restated` flag, and a per-row `qa_status`.
 

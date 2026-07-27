@@ -80,9 +80,9 @@ to the most recent reporting and validate every row (see below).
 ## This sample's coverage
 
 - 40 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
-- 3,212 point-in-time rows; revenue history depth averages 11.7 years
-- 3,152/3,212 rows carry a reliable filing date (mean lag 43.4 days, max 61); 60 oldest-year/edge rows flagged for resolution
-- 187 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments)
+- 3,280 point-in-time rows; revenue history depth averages 11.7 years
+- 3,240/3,280 rows carry a reliable filing date (mean lag 43 days, max 61); 40 oldest-year/edge rows flagged for resolution
+- 189 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments)
 
 ## What the adversarial audit caught (and fixed)
 

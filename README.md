@@ -58,6 +58,22 @@ until Nov 1, 2024. Same company, months apart, a different *known* reality. That
 lookahead bias this dataset removes.
 
 ## Want the full thing?
+## Python client
+
+```bash
+pip install tradevodata
+```
+
+```python
+import tradevodata as tv
+
+df = tv.sample()                              # this sample, no key needed
+tv.as_of_filter(df, as_of="2020-03-31")       # correct point-in-time join
+```
+
+`as_of` is a required argument on every query — there is no way to accidentally ask for
+today's numbers. Source: [tradevodata-py](https://github.com/christianpichichero-max/tradevodata-py)
+
 The full US universe is live: **5,194 companies · 313,406 point-in-time rows**, served as a
 JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
 cancel anytime.

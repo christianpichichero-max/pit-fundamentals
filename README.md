@@ -8,17 +8,22 @@ lookahead bias or silently-restated numbers.
 
 ## Use it in Python
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/christianpichichero-max/tradevodata-python/blob/main/examples/lookahead_bias_demo.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/christianpichichero-max/tradevodata-py/blob/main/examples/lookahead_bias_demo.ipynb)
 
 ```bash
-pip install git+https://github.com/christianpichichero-max/tradevodata-python
+pip install tradevodata
 ```
 ```python
-from tradevodata import load_sample
-df = load_sample()  # this whole sample as a typed DataFrame — no API key
-df[df.ticker == "AAPL"].head()
+import tradevodata as tv
+
+rows = tv.sample()                            # this sample — no key, no signup
+knowable = tv.as_of_filter(rows, "2020-03-31")  # correct point-in-time join
 ```
-The Colab notebook above demonstrates the lookahead bug live on this data — zero setup, zero key.
+
+`as_of` is a required argument everywhere in that package, so a lookahead-free join is the
+only one you can write. The Colab notebook above runs the experiment on this data with zero
+setup: it joins both ways at every month-end and finds **47 of 413 ticker-months (11%) where
+the naive join uses a number that was not yet public.**
 
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't

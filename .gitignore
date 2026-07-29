@@ -15,3 +15,11 @@ __pycache__/
 # bare-filename rules once and shipped 176k rows of the paid universe publicly.
 data/pit_universe*
 *.bak
+
+# AI-tooling scaffolding — not part of the published sample. Quants are invited to audit
+# this repo; 18 vendored image-generation skill files are noise at best, and the LICENSE
+# would wrongly assert our copyright over third-party content.
+.agents/
+skills-lock.json
+POST_DRAFT.md
+__pycache__/

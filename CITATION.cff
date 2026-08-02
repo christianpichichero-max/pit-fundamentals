@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If this sample supports your research, please cite it using this metadata."
+title: "Tradevo Data: point-in-time US equity fundamentals sample"
+type: dataset
+authors:
+  - family-names: Pichichero
+    given-names: Christian
+year: 2026
+version: "2026-07-31"
+date-released: 2026-06-25
+url: "https://tradevodata.com"
+repository-code: "https://github.com/christianpichichero-max/pit-fundamentals"
+license: CC0-1.0
+keywords:
+  - point-in-time fundamentals
+  - quantitative finance
+  - backtesting
+  - lookahead bias
+  - SEC EDGAR
+  - XBRL

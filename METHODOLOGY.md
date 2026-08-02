@@ -106,7 +106,9 @@ the raw EDGAR filings and diffed them against this dataset. It caught two real b
    guess is not.
 
 Item 1 is fixed in the published sample. Item 2 is *flagged, not fixed* — see above. Neither
-`first_filed` nor `period_end` was affected: the point-in-time stamps were always correct.
+bug affected `period_end`, and the 3,240 rows marked `filed_reliable = True` retain their
+verified point-in-time stamps. The 40 oldest-year/edge dates that cannot be established from
+the original XBRL filing remain explicitly unreliable rather than being presented as exact.
 
 We publish this because "our data is audited" only means something if you also publish what the
 audit found. A pipeline this size with zero bugs found would just mean nobody looked. If you
@@ -114,10 +116,11 @@ find something else, open an issue — corrections get published, not buried.
 
 ## Known limitations (we mark them, we don't hide them)
 
-- **Oldest-year filing dates**: 60 rows where only a later XBRL filing exists; flagged, not faked.
+- **Oldest-year filing dates**: 40 rows where only a later XBRL filing exists; flagged, not faked.
   (Resolvable by cross-referencing the EDGAR submissions index — on the roadmap.)
 - **Annual only** for now; quarterly (10-Q) point-in-time is the next build.
 - **Banks/insurers**: "revenue" is an approximate concept for financials; treat JPM-type names with care.
-- **40-company sample**: the full US universe is a pipeline run away — gated on demand, not on capability.
+- **40-company sample**: this repository is intentionally limited to 40 companies. The paid
+  API serves the live full universe; exact totals are published at https://tradevodata.com/status.
 
 The entire pitch is the line above each of these: a clean dataset *tells you what it doesn't know.*

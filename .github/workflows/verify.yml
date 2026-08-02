@@ -1,0 +1,19 @@
+name: Verify public sample
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python scripts/verify_public_sample.py
+      - run: python query_asof.py AAPL 2024-06-30

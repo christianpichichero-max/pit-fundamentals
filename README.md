@@ -6,9 +6,15 @@ A free sample dataset of **point-in-time** US equity fundamentals, built from SE
 Every value is stamped with the date it *first became public* — so you can backtest without
 lookahead bias or silently-restated numbers.
 
-## Use it in Python
+## Run the proof in 3 minutes
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/christianpichichero-max/tradevodata-py/blob/main/examples/lookahead_bias_demo.ipynb)
+
+The notebook joins the same fundamentals two ways at every month-end. The ordinary
+period-end join uses a value that was **not public yet in 47 of 413 ticker-months (11%)**.
+The point-in-time join removes those future values. No key, signup, or local setup required.
+
+## Use it in Python
 
 ```bash
 pip install tradevodata
@@ -79,19 +85,20 @@ tv.as_of_filter(df, as_of="2020-03-31")       # correct point-in-time join
 `as_of` is a required argument on every query — there is no way to accidentally ask for
 today's numbers. Source: [tradevodata-py](https://github.com/christianpichichero-max/tradevodata-py)
 
-The full US universe is live: **5,194 companies · 313,406 point-in-time rows**, served as a
-JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
-cancel anytime.
+The full US universe is live: **5,000+ companies · 300,000+ point-in-time rows**, served as
+a JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
+cancel anytime. The exact totals update with each EDGAR refresh and are published on the
+[live status page](https://tradevodata.com/status).
 
-> 🌐 **[tradevodata.com](https://tradevodata.com/?ref=github)** · docs at
-> [tradevodata.com/docs](https://tradevodata.com/docs)
+> 🌐 **[tradevodata.com](https://tradevodata.com/?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)** · docs at
+> [tradevodata.com/docs](https://tradevodata.com/docs?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)
 
 Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) is on the
 roadmap. Bulk is included in the $49 plan: `GET /v1/download` (full dataset, one gzipped CSV) and
 `GET /v1/snapshot?as_of=` (whole-universe cross-section); only the Parquet format is roadmap. If you need quarterly or delisted coverage today, a research-grade
 vendor will fit you better; this is the affordable tier for lookahead-safe annual fundamentals.
 
-Waiting on quarterly? [Join the waitlist](https://tradevodata.com/#waitlist) — one email when
+Waiting on quarterly? [Join the waitlist](https://tradevodata.com/?utm_source=github&utm_medium=repo&utm_campaign=quarterly-waitlist#waitlist) — one email when
 10-Q data ships, nothing else.
 
 ## Data

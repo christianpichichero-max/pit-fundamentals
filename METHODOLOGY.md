@@ -56,6 +56,26 @@ to the most recent reporting and validate every row (see below).
 5. **Restatement detection** — if a later filing revised a period's value by >0.5%, the row is
    marked `restated = True`, and we keep both `original_value` (first knowable) and
    `latest_value` (most recent).
+
+   **`restated` means "the number changed," not "the accountants were wrong."** Three different
+   things trip this flag and it is worth knowing which you are looking at:
+
+   - **Retroactive split adjustment** (20 of the 189 rows here, all `DilutedShares`). When a
+     company splits, EDGAR's current values are restated back through history, so Amazon's
+     FY2020 diluted share count reads **510,000,000** as originally filed and **10,198,000,000**
+     today — the 2022 20-for-1 split applied backwards. Same for AAPL (4:1), NVDA (4:1, then
+     10:1), TSLA (5:1, then 3:1), WMT (3:1), NFLX (7:1, then 10:1), AVGO (10:1) and NKE (2:1).
+     Nothing is wrong with either number; they are denominated in different shares. This is the
+     single most dangerous one for a backtest, because pairing today's share count with a
+     historical price understates market cap by exactly the split factor.
+   - **Accounting-standard adoption.** Salesforce's FY2017–18 net income moves from $179.6M to
+     $323M and $127.5M to $360M — that is ASC 606 adopted retrospectively, not an error.
+   - **Genuine revisions and amendments**, including 10-K/A refilings.
+
+   We deliberately do **not** collapse these into one "corrected" number. The point of the
+   dataset is that `original_value` is what you could actually have known on `first_filed`, and
+   `latest_value` is what a modern data vendor would hand you for the same period. The gap
+   between them is the lookahead you are trying to measure.
 6. **QA + reliability** — every row is checked (filing-lag range, value magnitude). Rows whose
    only available filing is a much-later one (common for the oldest years, where the original
    10-K predates XBRL) are marked `filed_reliable = False` rather than shipped with a
@@ -82,7 +102,9 @@ to the most recent reporting and validate every row (see below).
 - 40 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
 - 3,280 point-in-time rows; revenue history depth averages 11.7 years
 - 3,240/3,280 rows carry a reliable filing date (mean lag 43 days, max 61); 40 oldest-year/edge rows flagged for resolution
-- 189 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments)
+- 189 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments). 20 of
+  those are retroactive split adjustments to diluted share counts, not accounting errors — see
+  "Restatement detection" above for why they are kept rather than collapsed
 
 ## What the adversarial audit caught (and fixed)
 

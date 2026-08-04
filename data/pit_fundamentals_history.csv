@@ -83,6 +83,7 @@ AAPL,320193,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2017,2
 AAPL,320193,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2016,2016-09-24,2016-10-26,32,True,5500281000,5500281000,False,clean
 AAPL,320193,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2015,2015-09-26,2015-10-28,32,True,5793069000,5793069000,False,clean
 AAPL,320193,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2014,2014-09-27,2014-10-27,30,True,6122663000,6122663000,False,clean
+MSFT,789019,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2026,2026-06-30,2026-07-29,29,True,331839000000,331839000000,False,clean
 MSFT,789019,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2025,2025-06-30,2025-07-30,30,True,281724000000,281724000000,False,clean
 MSFT,789019,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2024,2024-06-30,2024-07-30,30,True,245122000000,245122000000,False,clean
 MSFT,789019,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2023,2023-06-30,2023-07-27,27,True,211915000000,211915000000,False,clean
@@ -94,7 +95,7 @@ MSFT,789019,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2018,201
 MSFT,789019,Revenue,SalesRevenueNet,2017,2017-06-30,2017-08-02,33,True,89950000000,89950000000,False,clean
 MSFT,789019,Revenue,SalesRevenueNet,2016,2016-06-30,2016-07-28,28,True,85320000000,85320000000,False,clean
 MSFT,789019,Revenue,SalesRevenueNet,2015,2015-06-30,2015-07-31,31,True,93580000000,93580000000,False,clean
-MSFT,789019,Revenue,SalesRevenueNet,2014,2014-06-30,2014-07-31,31,True,86833000000,86833000000,False,clean
+MSFT,789019,NetIncome,NetIncomeLoss,2026,2026-06-30,2026-07-29,29,True,133749000000,133749000000,False,clean
 MSFT,789019,NetIncome,NetIncomeLoss,2025,2025-06-30,2025-07-30,30,True,101832000000,101832000000,False,clean
 MSFT,789019,NetIncome,NetIncomeLoss,2024,2024-06-30,2024-07-30,30,True,88136000000,88136000000,False,clean
 MSFT,789019,NetIncome,NetIncomeLoss,2023,2023-06-30,2023-07-27,27,True,72361000000,72361000000,False,clean
@@ -106,7 +107,7 @@ MSFT,789019,NetIncome,NetIncomeLoss,2018,2018-06-30,2018-08-03,34,True,165710000
 MSFT,789019,NetIncome,NetIncomeLoss,2017,2017-06-30,2017-08-02,33,True,21204000000,25489000000,True,clean
 MSFT,789019,NetIncome,NetIncomeLoss,2016,2016-06-30,2016-07-28,28,True,16798000000,20539000000,True,clean
 MSFT,789019,NetIncome,NetIncomeLoss,2015,2015-06-30,2015-07-31,31,True,12193000000,12193000000,False,clean
-MSFT,789019,NetIncome,NetIncomeLoss,2014,2014-06-30,2014-07-31,31,True,22074000000,22074000000,False,clean
+MSFT,789019,Assets,Assets,2026,2026-06-30,2026-07-29,29,True,758376000000,758376000000,False,clean
 MSFT,789019,Assets,Assets,2025,2025-06-30,2025-07-30,30,True,619003000000,619003000000,False,clean
 MSFT,789019,Assets,Assets,2024,2024-06-30,2024-07-30,30,True,512163000000,512163000000,False,clean
 MSFT,789019,Assets,Assets,2023,2023-06-30,2023-07-27,27,True,411976000000,411976000000,False,clean
@@ -118,7 +119,7 @@ MSFT,789019,Assets,Assets,2018,2018-06-30,2018-08-03,34,True,258848000000,258848
 MSFT,789019,Assets,Assets,2017,2017-06-30,2017-08-02,33,True,241086000000,250312000000,True,clean
 MSFT,789019,Assets,Assets,2016,2016-06-30,2016-07-28,28,True,193694000000,193468000000,False,clean
 MSFT,789019,Assets,Assets,2015,2015-06-30,2015-07-31,31,True,176223000000,174472000000,True,clean
-MSFT,789019,Assets,Assets,2014,2014-06-30,2014-07-31,31,True,172384000000,172384000000,False,clean
+MSFT,789019,StockholdersEquity,StockholdersEquity,2026,2026-06-30,2026-07-29,29,True,442387000000,442387000000,False,clean
 MSFT,789019,StockholdersEquity,StockholdersEquity,2025,2025-06-30,2025-07-30,30,True,343479000000,343479000000,False,clean
 MSFT,789019,StockholdersEquity,StockholdersEquity,2024,2024-06-30,2024-07-30,30,True,268477000000,268477000000,False,clean
 MSFT,789019,StockholdersEquity,StockholdersEquity,2023,2023-06-30,2023-07-27,27,True,206223000000,206223000000,False,clean
@@ -130,7 +131,7 @@ MSFT,789019,StockholdersEquity,StockholdersEquity,2018,2018-06-30,2018-08-03,34,
 MSFT,789019,StockholdersEquity,StockholdersEquity,2017,2017-06-30,2017-08-02,33,True,72394000000,87711000000,True,clean
 MSFT,789019,StockholdersEquity,StockholdersEquity,2016,2016-06-30,2016-07-28,28,True,71997000000,83090000000,True,clean
 MSFT,789019,StockholdersEquity,StockholdersEquity,2015,2015-06-30,2015-07-31,31,True,80083000000,80083000000,False,clean
-MSFT,789019,StockholdersEquity,StockholdersEquity,2014,2014-06-30,2014-07-31,31,True,89784000000,89784000000,False,clean
+MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivities,2026,2026-06-30,2026-07-29,29,True,182935000000,182935000000,False,clean
 MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivities,2025,2025-06-30,2025-07-30,30,True,136162000000,136162000000,False,clean
 MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivities,2024,2024-06-30,2024-07-30,30,True,118548000000,118548000000,False,clean
 MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivities,2023,2023-06-30,2023-07-27,27,True,87582000000,87582000000,False,clean
@@ -142,7 +143,7 @@ MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivities,2018,20
 MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivitiesContinuingOperations,2017,2017-06-30,2017-08-02,33,True,39507000000,39507000000,False,clean
 MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivitiesContinuingOperations,2016,2016-06-30,2016-07-28,28,True,33325000000,33325000000,False,clean
 MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivitiesContinuingOperations,2015,2015-06-30,2015-07-31,31,True,29080000000,29668000000,True,clean
-MSFT,789019,OperatingCashFlow,NetCashProvidedByUsedInOperatingActivitiesContinuingOperations,2014,2014-06-30,2014-07-31,31,True,32231000000,32502000000,True,clean
+MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2026,2026-06-30,2026-07-29,29,True,17.95,17.95,False,clean
 MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2025,2025-06-30,2025-07-30,30,True,13.64,13.64,False,clean
 MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2024,2024-06-30,2024-07-30,30,True,11.8,11.8,False,clean
 MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2023,2023-06-30,2023-07-27,27,True,9.68,9.68,False,clean
@@ -154,7 +155,7 @@ MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2018,2018-06-30,2018-08-03,34,Tru
 MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2017,2017-06-30,2017-08-02,33,True,2.71,3.25,True,clean
 MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2016,2016-06-30,2016-07-28,28,True,2.1,2.56,True,clean
 MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2015,2015-06-30,2015-07-31,31,True,1.48,1.48,False,clean
-MSFT,789019,EPSDiluted,EarningsPerShareDiluted,2014,2014-06-30,2014-07-31,31,True,2.63,2.63,False,clean
+MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2026,2026-06-30,2026-07-29,29,True,7453000000,7453000000,False,clean
 MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2025,2025-06-30,2025-07-30,30,True,7465000000,7465000000,False,clean
 MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2024,2024-06-30,2024-07-30,30,True,7469000000,7469000000,False,clean
 MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2023,2023-06-30,2023-07-27,27,True,7472000000,7472000000,False,clean
@@ -166,7 +167,6 @@ MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2018,2
 MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2017,2017-06-30,2017-08-02,33,True,7832000000,7832000000,False,clean
 MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2016,2016-06-30,2016-07-28,28,True,8013000000,8013000000,False,clean
 MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2015,2015-06-30,2015-07-31,31,True,8254000000,8254000000,False,clean
-MSFT,789019,DilutedShares,WeightedAverageNumberOfDilutedSharesOutstanding,2014,2014-06-30,2014-07-31,31,True,8399000000,8399000000,False,clean
 GOOGL,1652044,Revenue,Revenues,2025,2025-12-31,2026-02-05,36,True,402836000000,402836000000,False,clean
 GOOGL,1652044,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2024,2024-12-31,2025-02-05,36,True,350018000000,350018000000,False,clean
 GOOGL,1652044,Revenue,RevenueFromContractWithCustomerExcludingAssessedTax,2023,2023-12-31,2024-01-31,31,True,307394000000,307394000000,False,clean
@@ -900,8 +900,8 @@ PG,80424,Revenue,Revenues,2019,2019-06-30,2019-08-06,37,True,67684000000,6768400
 PG,80424,Revenue,SalesRevenueNet,2018,2018-06-30,2018-08-07,38,True,66832000000,66832000000,False,clean
 PG,80424,Revenue,SalesRevenueNet,2017,2017-06-30,2017-08-07,38,True,65058000000,65058000000,False,clean
 PG,80424,Revenue,SalesRevenueNet,2016,2016-06-30,2016-08-09,40,True,65299000000,65299000000,False,clean
-PG,80424,Revenue,SalesRevenueNet,2015,2015-06-30,2015-08-07,38,True,76279000000,70749000000,True,FLAG:tag_switch_discontinuity
-PG,80424,Revenue,Revenues,2014,2014-06-30,2014-08-08,39,True,29400000000,29400000000,False,FLAG:ambiguous_tag;tag_switch_discontinuity
+PG,80424,Revenue,SalesRevenueNet,2015,2015-06-30,2015-08-07,38,True,76279000000,70749000000,True,clean
+PG,80424,Revenue,SalesRevenueNet,2014,2014-06-30,2014-08-08,39,True,83062000000,74401000000,True,clean
 PG,80424,NetIncome,NetIncomeLoss,2025,2025-06-30,2025-08-04,35,True,15974000000,15974000000,False,clean
 PG,80424,NetIncome,NetIncomeLoss,2024,2024-06-30,2024-08-05,36,True,14879000000,14879000000,False,clean
 PG,80424,NetIncome,NetIncomeLoss,2023,2023-06-30,2023-08-04,35,True,14653000000,14653000000,False,clean

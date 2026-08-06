@@ -14,6 +14,39 @@ The notebook joins the same fundamentals two ways at every month-end. The ordina
 period-end join uses a value that was **not public yet in 47 of 413 ticker-months (11%)**.
 The point-in-time join removes those future values. No key, signup, or local setup required.
 
+## Or check your own data
+
+That notebook shows the problem on our numbers. This measures it on yours:
+
+```bash
+python3 check_your_data.py your_fundamentals.csv
+```
+
+Point it at whatever you already backtest on — any CSV with a ticker, a period or fiscal year,
+and one value column. It finds the columns itself, needs no dependencies, and sends nothing
+anywhere. It separates the two failures because they have different fixes:
+
+- **Timing** — how many days early a period-end join hands you each number. Fixed by joining
+  on the filing date.
+- **Vintage** — rows where your value is what the company reports *now*, not what it filed at
+  the time. This one **survives correct filing-date handling**, because the date is right and
+  the number underneath it was rewritten later.
+
+Run against a typical current-values source, it reports things like:
+
+```
+2. VINTAGE — values that are today's number, not the one filed at the time
+   26 of 475 rows (5.5%) match the CURRENT value but not the as-filed one.
+
+     MRK FY2019: you have 39,121,000,000 · as filed 46,840,000,000 (-16.5%)
+     JNJ FY2021: you have 78,740,000,000 · as filed 93,775,000,000 (-16.0%)
+     LMT FY2014: you have 39,946,000,000 · as filed 45,600,000,000 (-12.4%)
+```
+
+It only compares against the 40 companies in this sample, and it says so — rows outside that
+coverage are counted and reported, never quietly dropped. A clean result is evidence about
+these 40 names, not proof about your universe.
+
 ## Use it in Python
 
 ```bash

@@ -240,6 +240,11 @@ def main():
         print(f"check that only looks at dates, and they make a backtest look better than it was.")
     print(f"Full universe ({args.concept} and six other concepts, 5,000+ US companies) with")
     print(f"first_filed and original_value on every row: https://tradevodata.com")
+    print()
+    # The one place a user of this tool has just seen a concrete, personal result. If they are
+    # ever going to say something, it is here — not on a landing page.
+    print(f"Built by one person. If this found something in your data, I'd like to hear what:")
+    print(f"christianpichichero@gmail.com — one line is plenty, and I reply.")
     print(f"Not investment advice.")
 
 

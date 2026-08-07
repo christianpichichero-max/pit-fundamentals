@@ -6,6 +6,15 @@ A free sample dataset of **point-in-time** US equity fundamentals, built from SE
 Every value is stamped with the date it *first became public* — so you can backtest without
 lookahead bias or silently-restated numbers.
 
+> **Using this? I'd genuinely like to know what for.**
+> I'm one person, and GitHub tells me this repo gets cloned but not by whom — so unless you say
+> something, I'm building in the dark. What are you testing it against? What's missing that
+> would make it useful? One line to **christianpichichero@gmail.com**, or
+> [open an issue](https://github.com/christianpichichero-max/pit-fundamentals/issues/new),
+> and I'll read it and reply.
+>
+> No signup, no list, nothing gated. The data is CC0 whether you answer or not.
+
 ## Run the proof in 3 minutes
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/christianpichichero-max/tradevodata-py/blob/main/examples/lookahead_bias_demo.ipynb)

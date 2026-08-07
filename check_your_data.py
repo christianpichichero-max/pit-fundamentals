@@ -231,8 +231,20 @@ def main():
                   f"· today {ref['latest']:,.0f}")
 
     if uncovered:
-        print(f"\nNot checked: {sum(uncovered.values())} rows across {len(uncovered)} tickers "
-              f"outside this sample's 40 companies.")
+        # The one moment a user feels this sample's limit rather than reading about it: they
+        # ran the tool on their own file and most of it came back unchecked. Saying only "not
+        # checked" leaves them thinking the tool is weak, when the honest answer is that the
+        # coverage is deliberately small and a wider one exists. Stated as a fact with the
+        # proportion, not as a pitch.
+        n_rows = sum(uncovered.values())
+        pct = 100.0 * n_rows / (n_rows + matched)
+        print(f"\nNot checked: {n_rows} rows across {len(uncovered)} tickers outside this "
+              f"sample's 40 companies")
+        print(f"  — {pct:.0f}% of your file. This sample is 40 large caps by design; the full "
+              f"set covers")
+        print(f"  5,000+ US companies with the same first_filed / original_value columns "
+              f"(tradevodata.com).")
+        print(f"  Everything above was measured only on the {matched} rows that overlap.")
 
     print(f"\n{'-' * 64}")
     if n_v:

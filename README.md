@@ -1,10 +1,12 @@
 # Tradevo Data — honest point-in-time US equity fundamentals
 
-*Fundamentals with nothing hidden — no lookahead, no silent restatements.*
+*Fundamentals with filed-date stamps, so a backtest only sees what was public — and restatements are flagged, not silently applied.*
 
 A free sample dataset of **point-in-time** US equity fundamentals, built from SEC EDGAR.
-Every value is stamped with the date it *first became public* — so you can backtest without
-lookahead bias or silently-restated numbers.
+Every value is stamped with the date it *first became public* (`first_filed`), so a join that
+filters by `first_filed <= as_of` only sees what was knowable on that date — and later
+revisions are kept alongside the original number with a `restated` flag rather than silently
+overwriting it.
 
 > **Using this? I'd genuinely like to know what for.**
 > I'm one person, and GitHub tells me this repo gets cloned but not by whom — so unless you say
@@ -68,8 +70,8 @@ rows = tv.sample()                            # this sample — no key, no signu
 knowable = tv.as_of_filter(rows, "2020-03-31")  # correct point-in-time join
 ```
 
-`as_of` is a required argument everywhere in that package, so a lookahead-free join is the
-only one you can write. The Colab notebook above runs the experiment on this data with zero
+`as_of` is a required argument everywhere in that package, so every join you write filters by
+`first_filed <= as_of` — there is no way to ask it for today's numbers by accident. The Colab notebook above runs the experiment on this data with zero
 setup: it joins both ways at every month-end and finds **47 of 413 ticker-months (11%) where
 the naive join uses a number that was not yet public.**
 
@@ -80,12 +82,19 @@ reliable-filing-date rows (3,240 of 3,280), fundamentals became public an averag
 **43 days after** the period ended (max 61). That hidden future-peek inflates every
 fundamental backtest.
 
-The clean point-in-time vendors (Compustat PIT, FactSet) fix this but run **$10k–50k+/yr** —
-out of reach for independent quants and small funds. This is the affordable, honest alternative.
+Point-in-time products exist at the institutional vendors —
+[S&P Global's Compustat](https://www.spglobal.com/market-intelligence/) and
+[FactSet](https://www.factset.com/) among them — but their pricing is quote-based and aimed at
+funds with a data budget; check their sites for current terms. This is the small-budget tier
+for lookahead-safe annual fundamentals: a free CC0 sample here, and a $49/mo API for the full
+universe (details below).
 
 ## The free sample
-- **40 large-cap US companies · 7 concepts** (Revenue, Net Income, Operating Cash Flow, Diluted EPS, Diluted Shares, Assets, Equity) · up to **12 years**
+Figures below were measured on the CSV in this repo (last rebuilt 2026-08-03):
+
+- **40 large-cap US companies · 7 concepts** (Revenue, Net Income, Operating Cash Flow, Diluted EPS, Diluted Shares, Assets, Equity) · revenue history runs **about 12 years** per company, measured on the sample (475 revenue rows across 40 companies)
 - **3,280 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
+- Browse it, and the API it previews, on the [sample page](https://tradevodata.com/sample?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08&utm_content=readme-sample)
 - Every row carries: `period_end`, `first_filed` (the point-in-time stamp), `lag_days`,
   `original_value` vs `latest_value`, a `restated` flag, and a per-row `qa_status`.
 
@@ -108,37 +117,30 @@ What you could HONESTLY know about AAPL as of 2024-06-30:
 ```
 Run it again as of `2025-01-15` and every line jumps to FY2024 — because that 10-K wasn't filed
 until Nov 1, 2024. Same company, months apart, a different *known* reality. That gap is the
-lookahead bias this dataset removes.
+lookahead the `first_filed` stamp lets you filter out.
 
-## Want the full thing?
-## Python client
+## Want the full universe?
 
-```bash
-pip install tradevodata
-```
+The full US universe is live: **5,189 companies · 312,751 point-in-time rows · 18,723 flagged
+restatements** as of the 2026-07-23 load, served as a JSON query API with server-side `as_of`
+semantics — **$49/mo**, key issued instantly, cancel anytime. Totals move with each EDGAR
+refresh; the current ones are on the
+[live status page](https://tradevodata.com/status?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08).
 
-```python
-import tradevodata as tv
+The same `tradevodata` package above talks to the API — `Client(api_key=...).fundamentals("AAPL", as_of="2024-06-30")` —
+with `as_of` required on every query. Source: [tradevodata-py](https://github.com/christianpichichero-max/tradevodata-py).
 
-df = tv.sample()                              # this sample, no key needed
-tv.as_of_filter(df, as_of="2020-03-31")       # correct point-in-time join
-```
-
-`as_of` is a required argument on every query — there is no way to accidentally ask for
-today's numbers. Source: [tradevodata-py](https://github.com/christianpichichero-max/tradevodata-py)
-
-The full US universe is live: **5,000+ companies · 300,000+ point-in-time rows**, served as
-a JSON query API with server-side `as_of` semantics — **$49/mo**, key issued instantly,
-cancel anytime. The exact totals update with each EDGAR refresh and are published on the
-[live status page](https://tradevodata.com/status).
-
-> 🌐 **[tradevodata.com](https://tradevodata.com/?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)** · docs at
-> [tradevodata.com/docs](https://tradevodata.com/docs?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)
+> 🌐 **[tradevodata.com](https://tradevodata.com/?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)** ·
+> [sample page](https://tradevodata.com/sample?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08&utm_content=readme-sample) ·
+> [docs](https://tradevodata.com/docs?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)
 
 Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) is on the
 roadmap. Bulk is included in the $49 plan: `GET /v1/download` (full dataset, one gzipped CSV) and
-`GET /v1/snapshot?as_of=` (whole-universe cross-section); only the Parquet format is roadmap. If you need quarterly or delisted coverage today, a research-grade
-vendor will fit you better; this is the affordable tier for lookahead-safe annual fundamentals.
+`GET /v1/snapshot?as_of=` (whole-universe cross-section); only the Parquet format is roadmap.
+Across the full universe, filing lag on reliable rows is mean 66 / median 60 / 90th percentile
+90 days (rows are QA-capped at 120), measured 2026-07-23. If you need quarterly or delisted
+coverage today, a research-grade vendor will fit you better; this is the small-budget tier for
+lookahead-safe annual fundamentals.
 
 Waiting on quarterly? [Join the waitlist](https://tradevodata.com/?utm_source=github&utm_medium=repo&utm_campaign=quarterly-waitlist#waitlist) — one email when
 10-Q data ships, nothing else.

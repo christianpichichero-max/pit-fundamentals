@@ -99,8 +99,10 @@ to the most recent reporting and validate every row (see below).
 
 ## This sample's coverage
 
+Measured on `data/pit_fundamentals_history.csv` in this repo (last rebuilt 2026-08-03):
+
 - 40 large-cap US companies, 7 concepts (revenue, net income, operating cash flow, diluted EPS, diluted shares, assets, equity), up to 12 fiscal years each
-- 3,280 point-in-time rows; revenue history depth averages 11.7 years
+- 3,280 point-in-time rows; revenue history runs about 12 years per company, measured on the sample (475 revenue rows across 40 companies)
 - 3,240/3,280 rows carry a reliable filing date (mean lag 43 days, max 61); 40 oldest-year/edge rows flagged for resolution
 - 189 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments). 20 of
   those are retroactive split adjustments to diluted share counts, not accounting errors — see

@@ -78,7 +78,7 @@ the naive join uses a number that was not yet public.**
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't
 public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample's
-reliable-filing-date rows (3,240 of 3,280), fundamentals became public an average of
+reliable-filing-date rows (6,823 of 6,969), fundamentals became public an average of
 **43 days after** the period ended (max 61). That hidden future-peek inflates every
 fundamental backtest.
 
@@ -86,14 +86,14 @@ Point-in-time products exist at the institutional vendors —
 [S&P Global's Compustat](https://www.spglobal.com/market-intelligence/) and
 [FactSet](https://www.factset.com/) among them — but their pricing is quote-based and aimed at
 funds with a data budget; check their sites for current terms. This is the small-budget tier
-for lookahead-safe annual fundamentals: a free CC0 sample here, and a $49/mo API for the full
+for lookahead-safe annual fundamentals: a free CC0 sample here, and a $29/mo API for the full
 universe (details below).
 
 ## The free sample
-Figures below were measured on the CSV in this repo (last rebuilt 2026-08-03):
+Figures below were measured on the CSV in this repo (last rebuilt 2026-09-07):
 
-- **40 large-cap US companies · 7 concepts** (Revenue, Net Income, Operating Cash Flow, Diluted EPS, Diluted Shares, Assets, Equity) · revenue history runs **about 12 years** per company, measured on the sample (475 revenue rows across 40 companies)
-- **3,280 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
+- **40 large-cap US companies · 16 concepts** (Revenue, Net Income, Assets, Equity, Operating Cash Flow, Diluted EPS, Diluted Shares, Gross Profit, Operating Income, Pretax Income, Income Tax Expense, Capital Expenditures, Cash and Cash Equivalents, Current Assets, Current Liabilities, and Net PP&E) · revenue history runs **about 12 years** per company, measured on the sample (475 revenue rows across 40 companies)
+- **6,969 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
 - Browse it, and the API it previews, on the [sample page](https://tradevodata.com/sample?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08&utm_content=readme-sample)
 - Every row carries: `period_end`, `first_filed` (the point-in-time stamp), `lag_days`,
   `original_value` vs `latest_value`, a `restated` flag, and a per-row `qa_status`.
@@ -113,7 +113,7 @@ What you could HONESTLY know about AAPL as of 2024-06-30:
   Revenue              $383.3B   (FY2023, filed 2023-11-03)
   NetIncome             $97.0B   (FY2023, filed 2023-11-03)
   OperatingCashFlow    $110.5B   (FY2023, filed 2023-11-03)
-  ...  (7 concepts)
+  ...  (16 concepts)
 ```
 Run it again as of `2025-01-15` and every line jumps to FY2024 — because that 10-K wasn't filed
 until Nov 1, 2024. Same company, months apart, a different *known* reality. That gap is the
@@ -123,7 +123,7 @@ lookahead the `first_filed` stamp lets you filter out.
 
 The full US universe is live: **5,189 companies · 312,751 point-in-time rows · 18,723 flagged
 restatements** as of the 2026-07-23 load, served as a JSON query API with server-side `as_of`
-semantics — **$49/mo**, key issued instantly, cancel anytime. Totals move with each EDGAR
+semantics — **$29/mo**, key issued instantly, cancel anytime. Totals move with each EDGAR
 refresh; the current ones are on the
 [live status page](https://tradevodata.com/status?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08).
 
@@ -135,7 +135,7 @@ with `as_of` required on every query. Source: [tradevodata-py](https://github.co
 > [docs](https://tradevodata.com/docs?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)
 
 Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) is on the
-roadmap. Bulk is included in the $49 plan: `GET /v1/download` (full dataset, one gzipped CSV) and
+roadmap. Bulk is included in the $29 plan: `GET /v1/download` (full dataset, one gzipped CSV) and
 `GET /v1/snapshot?as_of=` (whole-universe cross-section); only the Parquet format is roadmap.
 Across the full universe, filing lag on reliable rows is mean 66 / median 60 / 90th percentile
 90 days (rows are QA-capped at 120), measured 2026-07-23. If you need quarterly or delisted

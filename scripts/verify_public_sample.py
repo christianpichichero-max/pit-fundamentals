@@ -8,6 +8,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "pit_fundamentals_history.csv"
+EXPECTED_CONCEPTS = {
+    "Assets",
+    "CapitalExpenditures",
+    "CashAndCashEquivalents",
+    "CurrentAssets",
+    "CurrentLiabilities",
+    "DilutedShares",
+    "EPSDiluted",
+    "GrossProfit",
+    "IncomeTaxExpense",
+    "NetIncome",
+    "NetPPE",
+    "OperatingCashFlow",
+    "OperatingIncome",
+    "PretaxIncome",
+    "Revenue",
+    "StockholdersEquity",
+}
 
 
 with DATA.open(newline="", encoding="utf-8-sig") as handle:
@@ -41,8 +59,12 @@ for document, phrases in required.items():
         if phrase not in text
     )
 
-if len(concepts) != 7:
-    errors.append(f"Expected 7 concepts, found {len(concepts)}")
+if concepts != EXPECTED_CONCEPTS:
+    errors.append(
+        "Concept contract mismatch: "
+        f"missing={sorted(EXPECTED_CONCEPTS - concepts)}, "
+        f"unexpected={sorted(concepts - EXPECTED_CONCEPTS)}"
+    )
 
 if errors:
     raise SystemExit("\n".join(errors))

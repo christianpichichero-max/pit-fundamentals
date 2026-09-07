@@ -121,8 +121,8 @@ lookahead the `first_filed` stamp lets you filter out.
 
 ## Want the full universe?
 
-The full US universe is live: **5,189 companies · 312,751 point-in-time rows · 18,723 flagged
-restatements** as of the 2026-07-23 load, served as a JSON query API with server-side `as_of`
+The full US universe is live: **5,177 companies · 633,958 point-in-time rows · 38,030 flagged
+restatements** as of the 2026-09-07 load, served as a JSON query API with server-side `as_of`
 semantics — **$29/mo**, key issued instantly, cancel anytime. Totals move with each EDGAR
 refresh; the current ones are on the
 [live status page](https://tradevodata.com/status?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08).

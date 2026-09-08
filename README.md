@@ -86,8 +86,8 @@ Point-in-time products exist at the institutional vendors —
 [S&P Global's Compustat](https://www.spglobal.com/market-intelligence/) and
 [FactSet](https://www.factset.com/) among them — but their pricing is quote-based and aimed at
 funds with a data budget; check their sites for current terms. This is the small-budget tier
-for lookahead-safe annual fundamentals: a free CC0 sample here, and a $29/mo API for the full
-universe (details below).
+for point-in-time US fundamentals: a free annual CC0 sample here, and a $29/mo annual-and-quarterly
+API for the full universe (details below).
 
 ## The free sample
 Figures below were measured on the CSV in this repo (last rebuilt 2026-09-07):
@@ -121,8 +121,8 @@ lookahead the `first_filed` stamp lets you filter out.
 
 ## Want the full universe?
 
-The full US universe is live: **5,177 companies · 633,958 point-in-time rows · 38,030 flagged
-restatements** as of the 2026-09-07 load, served as a JSON query API with server-side `as_of`
+The full annual US universe is live: **5,170 companies · 633,394 point-in-time rows · 37,941 flagged
+restatements** as of the 2026-09-08 load, served as a JSON query API with server-side `as_of`
 semantics — **$29/mo**, key issued instantly, cancel anytime. Totals move with each EDGAR
 refresh; the current ones are on the
 [live status page](https://tradevodata.com/status?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08).
@@ -134,16 +134,15 @@ with `as_of` required on every query. Source: [tradevodata-py](https://github.co
 > [sample page](https://tradevodata.com/sample?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08&utm_content=readme-sample) ·
 > [docs](https://tradevodata.com/docs?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)
 
-Honest limits, stated up front: annual (10-K/10-K/A) only for now — quarterly (10-Q) is on the
-roadmap. Bulk is included in the $29 plan: `GET /v1/download` (full dataset, one gzipped CSV) and
-`GET /v1/snapshot?as_of=` (whole-universe cross-section); only the Parquet format is roadmap.
-Across the full universe, filing lag on reliable rows is mean 66 / median 60 / 90th percentile
-90 days (rows are QA-capped at 120), measured 2026-07-23. If you need quarterly or delisted
-coverage today, a research-grade vendor will fit you better; this is the small-budget tier for
-lookahead-safe annual fundamentals.
-
-Waiting on quarterly? [Join the waitlist](https://tradevodata.com/?utm_source=github&utm_medium=repo&utm_campaign=quarterly-waitlist#waitlist) — one email when
-10-Q data ships, nothing else.
+Honest limits, stated up front: the public sample in this repository contains annual
+10-K/10-K/A rows. The hosted API also serves seven quarterly concepts from 10-Q filings;
+supported Q4 values are reported or derived and labelled, with no derived Q4 EPS or diluted
+shares and no TTM. Bulk is included in the $29 plan: `GET /v1/download?period=annual|quarterly`
+and `GET /v1/snapshot?as_of=&period=annual|quarterly`; Parquet is not included.
+Across the full annual universe, filing lag on reliable rows is mean 66 / median 60 / 90th percentile
+90 days (rows are QA-capped at 120), measured 2026-09-08. If you need broader statements,
+TTM, non-US data, or delisted-company coverage, a research-grade vendor will fit you better.
+Current annual and quarterly coverage totals are published on the live status page.
 
 ## Data
 Source data is U.S. SEC EDGAR (public domain). **Tradevo Data** is a product of Tradevo Technologies Inc.

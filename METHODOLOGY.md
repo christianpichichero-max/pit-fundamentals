@@ -145,7 +145,9 @@ find something else, open an issue — corrections get published, not buried.
 
 - **Oldest-year filing dates**: 146 rows where only a later XBRL filing exists; flagged, not faked.
   (Resolvable by cross-referencing the EDGAR submissions index — on the roadmap.)
-- **Annual only** for now; quarterly (10-Q) point-in-time is the next build.
+- **Public-sample cadence**: this repository contains annual 10-K/10-K/A rows. The hosted
+  Tradevo Data API also serves seven quarterly concepts from 10-Q filings, with supported Q4
+  derivations labelled and no TTM.
 - **Concept coverage varies by filer**: 16 concepts are supported, but absent rows stay absent.
   Banks commonly do not report CurrentAssets, CurrentLiabilities, or GrossProfit under those
   exact US-GAAP tags; we do not derive or relabel a different-scope value to fill the gap.

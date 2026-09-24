@@ -42,12 +42,14 @@ EXPECTED_HEADERS = [
     "restated",
     "qa_status",
 ]
-EXPECTED_ROWS = 6_969
-EXPECTED_TICKERS = 40
-EXPECTED_RELIABLE = 6_823
-EXPECTED_RESTATEMENTS = 367
-EXPECTED_RELIABLE_MEAN_LAG = 43.2
-EXPECTED_RELIABLE_MAX_LAG = 61
+EXPECTED_ROWS = 225
+EXPECTED_TICKERS = 5
+EXPECTED_RELIABLE = 224
+EXPECTED_RESTATEMENTS = 17
+EXPECTED_RELIABLE_MEAN_LAG = 35.2
+EXPECTED_RELIABLE_MAX_LAG = 48
+EXPECTED_TICKER_SET = {"AAPL", "HON", "NFLX", "NVDA", "WMT"}
+EXPECTED_MAX_YEARS_PER_TICKER = 3
 
 
 with DATA.open(newline="", encoding="utf-8-sig") as handle:
@@ -63,14 +65,14 @@ unreliable = len(rows) - reliable
 
 required = {
     ROOT / "README.md": [
-        f"{len(tickers)} large-cap US companies",
+        f"{len(tickers)} recognizable US companies",
         f"{len(rows):,} point-in-time rows",
     ],
     ROOT / "METHODOLOGY.md": [
         f"{len(rows):,} point-in-time rows",
         f"{reliable:,}/{len(rows):,} rows carry a reliable filing date",
         f"{restated:,} restatements detected",
-        f"{unreliable} rows where only a later XBRL filing exists",
+        f"{unreliable} row{'s' if unreliable != 1 else ''} where only a later XBRL filing exists",
     ],
 }
 
@@ -81,6 +83,12 @@ if len(rows) != EXPECTED_ROWS:
     errors.append(f"Row-count mismatch: expected={EXPECTED_ROWS:,}, got={len(rows):,}")
 if len(tickers) != EXPECTED_TICKERS:
     errors.append(f"Ticker-count mismatch: expected={EXPECTED_TICKERS}, got={len(tickers)}")
+if tickers != EXPECTED_TICKER_SET:
+    errors.append(f"Ticker-set mismatch: expected={sorted(EXPECTED_TICKER_SET)}, got={sorted(tickers)}")
+for ticker in sorted(tickers):
+    years = {int(row["fiscal_year"]) for row in rows if row["ticker"] == ticker}
+    if len(years) > EXPECTED_MAX_YEARS_PER_TICKER:
+        errors.append(f"{ticker} has {len(years)} fiscal years; maximum is {EXPECTED_MAX_YEARS_PER_TICKER}")
 if reliable != EXPECTED_RELIABLE:
     errors.append(f"Reliable-date mismatch: expected={EXPECTED_RELIABLE:,}, got={reliable:,}")
 if restated != EXPECTED_RESTATEMENTS:

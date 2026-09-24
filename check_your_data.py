@@ -24,10 +24,10 @@ It reports two separate problems, because they have different fixes:
      This one survives correct filing-date handling, because the date is right and the
      number underneath it was rewritten later.
 
-Honest limits: this compares against the 40 large caps in the free sample, annual periods
+Honest limits: this compares against the 5 companies in the public proof pack, annual periods
 only. Rows outside that coverage are counted and reported separately, never silently dropped.
 It cannot tell you about companies we do not cover, and a clean result here is evidence about
-these 40 names, not proof about your whole universe.
+these 5 names, not proof about your whole universe.
 
 Stdlib only. Nothing leaves your machine.
 """
@@ -180,7 +180,7 @@ def main():
             unexplained.append((tkr, fy, val, ref))
 
     if not matched:
-        print("None of your rows overlap the 40 companies and annual periods in this sample.")
+        print("None of your rows overlap the 5 companies and annual periods in this proof pack.")
         print("That is not a clean bill of health — it means this check could not see your data.")
         if uncovered:
             print(f"  {sum(uncovered.values())} rows across {len(uncovered)} tickers were outside coverage.")
@@ -239,8 +239,8 @@ def main():
         n_rows = sum(uncovered.values())
         pct = 100.0 * n_rows / (n_rows + matched)
         print(f"\nNot checked: {n_rows} rows across {len(uncovered)} tickers outside this "
-              f"sample's 40 companies")
-        print(f"  — {pct:.0f}% of your file. This sample is 40 large caps by design; the full "
+              f"proof pack's 5 companies")
+        print(f"  — {pct:.0f}% of your file. This proof pack is 5 companies by design; the full "
               f"set covers")
         print(f"  5,000+ US companies with the same first_filed / original_value columns "
               f"(tradevodata.com).")

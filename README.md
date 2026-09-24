@@ -122,8 +122,9 @@ lookahead the `first_filed` stamp lets you filter out.
 ## Want the full universe?
 
 The full annual US universe is live, served as a JSON query API with server-side `as_of`
-semantics. Start with a **30-day evaluation** (card required; 50 companies total; no bulk or
-whole-universe snapshot), then continue for **$29/mo** unless canceled. Totals move with each
+semantics. Start with a **30-day evaluation** (card required; 10 companies total; rolling
+3-year history; 100 requests/day; no bulk or whole-universe snapshot), then continue for
+**$29/mo** unless canceled. Totals move with each
 EDGAR refresh; the current ones are on the
 [live status page](https://tradevodata.com/status?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08).
 

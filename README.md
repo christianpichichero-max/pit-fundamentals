@@ -2,7 +2,7 @@
 
 *Fundamentals with filed-date stamps, so a backtest only sees what was public — and restatements are flagged, not silently applied.*
 
-A free sample dataset of **point-in-time** US equity fundamentals, built from SEC EDGAR.
+A deliberately small public proof pack of **point-in-time** US equity fundamentals, built from SEC EDGAR.
 Every value is stamped with the date it *first became public* (`first_filed`), so a join that
 filters by `first_filed <= as_of` only sees what was knowable on that date — and later
 revisions are kept alongside the original number with a `restated` flag rather than silently
@@ -15,14 +15,14 @@ overwriting it.
 > [open an issue](https://github.com/christianpichichero-max/pit-fundamentals/issues/new),
 > and I'll read it and reply.
 >
-> No signup, no list, nothing gated. The data is CC0 whether you answer or not.
+> No signup, no list, nothing gated. The proof pack is CC0 whether you answer or not.
 
 ## Run the proof in 3 minutes
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/christianpichichero-max/tradevodata-py/blob/main/examples/lookahead_bias_demo.ipynb)
 
-The notebook joins the same fundamentals two ways at every month-end. The ordinary
-period-end join uses a value that was **not public yet in 47 of 413 ticker-months (11%)**.
+The notebook joins the same fundamentals two ways at every month-end. On this compact proof
+pack, the ordinary period-end join uses a value that was **not public yet in 14 of 85 ticker-months (16%)**.
 The point-in-time join removes those future values. No key, signup, or local setup required.
 
 ## Or check your own data
@@ -49,14 +49,14 @@ Run against a typical current-values source, it reports things like:
 2. VINTAGE — values that are today's number, not the one filed at the time
    26 of 475 rows (5.5%) match the CURRENT value but not the as-filed one.
 
-     MRK FY2019: you have 39,121,000,000 · as filed 46,840,000,000 (-16.5%)
-     JNJ FY2021: you have 78,740,000,000 · as filed 93,775,000,000 (-16.0%)
-     LMT FY2014: you have 39,946,000,000 · as filed 45,600,000,000 (-12.4%)
+     HON FY2024 revenue: as filed 38,498,000,000 · latest 34,717,000,000
+     NFLX FY2024 diluted EPS: as filed 19.83 · split-adjusted latest 1.98
+     NVDA FY2024 diluted shares: as filed 2,494,000,000 · latest 24,940,000,000
 ```
 
-It only compares against the 40 companies in this sample, and it says so — rows outside that
+It only compares against the 5 companies in this proof pack, and it says so — rows outside that
 coverage are counted and reported, never quietly dropped. A clean result is evidence about
-these 40 names, not proof about your universe.
+these 5 names, not proof about your universe.
 
 ## Use it in Python
 
@@ -72,28 +72,28 @@ knowable = tv.as_of_filter(rows, "2020-03-31")  # correct point-in-time join
 
 `as_of` is a required argument everywhere in that package, so every join you write filters by
 `first_filed <= as_of` — there is no way to ask it for today's numbers by accident. The Colab notebook above runs the experiment on this data with zero
-setup: it joins both ways at every month-end and finds **47 of 413 ticker-months (11%) where
+setup: it joins both ways at every month-end and finds **14 of 85 ticker-months (16%) where
 the naive join uses a number that was not yet public.**
 
 ## The problem this fixes
 A backtest that joins fundamentals on the **period-end** date is using numbers that weren't
 public yet (the 10-K files weeks later) — classic **lookahead bias**. In this sample's
-reliable-filing-date rows (6,823 of 6,969), fundamentals became public an average of
-**43 days after** the period ended (max 61). That hidden future-peek inflates every
+reliable-filing-date rows (224 of 225), fundamentals became public an average of
+**35.2 days after** the period ended (max 48). That hidden future-peek inflates every
 fundamental backtest.
 
 Point-in-time products exist at the institutional vendors —
 [S&P Global's Compustat](https://www.spglobal.com/market-intelligence/) and
 [FactSet](https://www.factset.com/) among them — but their pricing is quote-based and aimed at
 funds with a data budget; check their sites for current terms. This is the small-budget tier
-for point-in-time US fundamentals: a free annual CC0 sample here, and a $29/mo annual-and-quarterly
-API for the full universe (details below).
+for point-in-time US fundamentals: a tiny annual CC0 proof pack here, a 30-day card-required
+evaluation, and a $29/mo annual-and-quarterly API for the full universe (details below).
 
-## The free sample
-Figures below were measured on the CSV in this repo (last rebuilt 2026-09-07):
+## The public proof pack
+Figures below were measured on the CSV in this repo (reduced 2026-09-24):
 
-- **40 large-cap US companies · 16 concepts** (Revenue, Net Income, Assets, Equity, Operating Cash Flow, Diluted EPS, Diluted Shares, Gross Profit, Operating Income, Pretax Income, Income Tax Expense, Capital Expenditures, Cash and Cash Equivalents, Current Assets, Current Liabilities, and Net PP&E) · revenue history runs **about 12 years** per company, measured on the sample (475 revenue rows across 40 companies)
-- **6,969 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
+- **5 recognizable US companies · latest 3 fiscal years each · 16 concepts** (Revenue, Net Income, Assets, Equity, Operating Cash Flow, Diluted EPS, Diluted Shares, Gross Profit, Operating Income, Pretax Income, Income Tax Expense, Capital Expenditures, Cash and Cash Equivalents, Current Assets, Current Liabilities, and Net PP&E)
+- **225 point-in-time rows** → [`data/pit_fundamentals_history.csv`](data/pit_fundamentals_history.csv)
 - Browse it, and the API it previews, on the [sample page](https://tradevodata.com/sample?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08&utm_content=readme-sample)
 - Every row carries: `period_end`, `first_filed` (the point-in-time stamp), `lag_days`,
   `original_value` vs `latest_value`, a `restated` flag, and a per-row `qa_status`.
@@ -121,10 +121,10 @@ lookahead the `first_filed` stamp lets you filter out.
 
 ## Want the full universe?
 
-The full annual US universe is live: **5,170 companies · 633,394 point-in-time rows · 37,941 flagged
-restatements** as of the 2026-09-08 load, served as a JSON query API with server-side `as_of`
-semantics — **$29/mo**, key issued instantly, cancel anytime. Totals move with each EDGAR
-refresh; the current ones are on the
+The full annual US universe is live, served as a JSON query API with server-side `as_of`
+semantics. Start with a **30-day evaluation** (card required; 50 companies total; no bulk or
+whole-universe snapshot), then continue for **$29/mo** unless canceled. Totals move with each
+EDGAR refresh; the current ones are on the
 [live status page](https://tradevodata.com/status?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08).
 
 The same `tradevodata` package above talks to the API — `Client(api_key=...).fundamentals("AAPL", as_of="2024-06-30")` —
@@ -134,7 +134,7 @@ with `as_of` required on every query. Source: [tradevodata-py](https://github.co
 > [sample page](https://tradevodata.com/sample?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08&utm_content=readme-sample) ·
 > [docs](https://tradevodata.com/docs?utm_source=github&utm_medium=repo&utm_campaign=pit-proof-2026-08)
 
-Honest limits, stated up front: the public sample in this repository contains annual
+Honest limits, stated up front: the public proof pack in this repository contains annual
 10-K/10-K/A rows. The hosted API also serves seven quarterly concepts from 10-Q filings;
 supported Q4 values are reported or derived and labelled, with no derived Q4 EPS or diluted
 shares and no TTM. Bulk is included in the $29 plan: `GET /v1/download?period=annual|quarterly`

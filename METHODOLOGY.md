@@ -18,8 +18,8 @@ the numbers aren't *public* until the 10-K is filed weeks later (Apple's was fil
 **2024-11-01**). A backtest that joins fundamentals on the period-end date is using
 information that didn't exist yet — it's peeking into the future.
 
-In this sample, on rows with a reliable filing date, fundamentals became public on
-average **43 days after** the period ended (max 61). That's the future-peek a naive
+In this proof pack, on rows with a reliable filing date, fundamentals became public on
+average **35.2 days after** the period ended (max 48). That's the future-peek a naive
 join silently grants you on *every data point*. It makes strategies look better in
 testing than they are in life.
 
@@ -63,7 +63,7 @@ candidate tags by fiscal period, preserve the first-public value, and validate e
    **`restated` means "the number changed," not "the accountants were wrong."** Three different
    things trip this flag and it is worth knowing which you are looking at:
 
-   - **Retroactive split adjustment** (25 of the 367 rows here, all `DilutedShares`). When a
+   - **Retroactive split adjustment.** When a
      company splits, EDGAR's current values are restated back through history, so Amazon's
      FY2020 diluted share count reads **510,000,000** as originally filed and **10,198,000,000**
      today — the 2022 20-for-1 split applied backwards. Same for AAPL (4:1), NVDA (4:1, then
@@ -102,14 +102,13 @@ candidate tags by fiscal period, preserve the first-public value, and validate e
 
 ## This sample's coverage
 
-Measured on `data/pit_fundamentals_history.csv` in this repo (last rebuilt 2026-09-07):
+Measured on `data/pit_fundamentals_history.csv` in this repo (reduced 2026-09-24):
 
-- 40 large-cap US companies, 16 concepts, up to 12 fiscal years each
-- 6,969 point-in-time rows; revenue history runs about 12 years per company, measured on the sample (475 revenue rows across 40 companies)
-- 6,823/6,969 rows carry a reliable filing date (mean lag 43 days, max 61); 146 oldest-year/edge rows flagged for resolution
-- 367 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments). 25 of
-  those are retroactive split adjustments to diluted share counts, not accounting errors — see
-  "Restatement detection" above for why they are kept rather than collapsed
+- 5 recognizable US companies, 16 concepts, latest 3 fiscal years per company
+- 225 point-in-time rows
+- 224/225 rows carry a reliable filing date (mean lag 35.2 days, max 48); 1 row is flagged for resolution
+- 17 restatements detected (same-tag revisions >0.5%, including 10-K/A amendments and
+  retroactive split-related revisions — see "Restatement detection" above)
 
 ## What the adversarial audit caught (and fixed)
 
@@ -133,8 +132,8 @@ the raw EDGAR filings and diffed them against this dataset. It caught two real b
    guess is not.
 
 Item 1 is fixed in the published sample. Item 2 is *flagged, not fixed* — see above. Neither
-bug affected `period_end`, and the 6,823 rows marked `filed_reliable = True` retain their
-verified point-in-time stamps. The 146 oldest-year/edge dates that cannot be established from
+bug affected `period_end`, and the 224 rows marked `filed_reliable = True` retain their
+verified point-in-time stamps. The 1 date that cannot be established from
 the original XBRL filing remain explicitly unreliable rather than being presented as exact.
 
 We publish this because "our data is audited" only means something if you also publish what the
@@ -143,7 +142,7 @@ find something else, open an issue — corrections get published, not buried.
 
 ## Known limitations (we mark them, we don't hide them)
 
-- **Oldest-year filing dates**: 146 rows where only a later XBRL filing exists; flagged, not faked.
+- **Filing-date edge cases**: 1 row where only a later XBRL filing exists; flagged, not faked.
   (Resolvable by cross-referencing the EDGAR submissions index — on the roadmap.)
 - **Public-sample cadence**: this repository contains annual 10-K/10-K/A rows. The hosted
   Tradevo Data API also serves seven quarterly concepts from 10-Q filings, with supported Q4
@@ -152,7 +151,8 @@ find something else, open an issue — corrections get published, not buried.
   Banks commonly do not report CurrentAssets, CurrentLiabilities, or GrossProfit under those
   exact US-GAAP tags; we do not derive or relabel a different-scope value to fill the gap.
 - **Banks/insurers**: "revenue" is an approximate concept for financials; treat JPM-type names with care.
-- **40-company sample**: this repository is intentionally limited to 40 companies. The paid
-  API serves the live full universe; exact totals are published at https://tradevodata.com/status.
+- **5-company proof pack**: this repository is intentionally limited to five companies and
+  three fiscal years each. The evaluation allows 50 companies; the paid API serves the live
+  full universe. Exact totals are published at https://tradevodata.com/status.
 
 The entire pitch is the line above each of these: a clean dataset *tells you what it doesn't know.*

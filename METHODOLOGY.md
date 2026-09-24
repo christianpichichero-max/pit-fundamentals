@@ -152,7 +152,8 @@ find something else, open an issue — corrections get published, not buried.
   exact US-GAAP tags; we do not derive or relabel a different-scope value to fill the gap.
 - **Banks/insurers**: "revenue" is an approximate concept for financials; treat JPM-type names with care.
 - **5-company proof pack**: this repository is intentionally limited to five companies and
-  three fiscal years each. The evaluation allows 50 companies; the paid API serves the live
+  three fiscal years each. The evaluation allows 10 companies, a rolling three-year history
+  and 100 requests/day; the paid API serves the live
   full universe. Exact totals are published at https://tradevodata.com/status.
 
 The entire pitch is the line above each of these: a clean dataset *tells you what it doesn't know.*
